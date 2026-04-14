@@ -1,21 +1,36 @@
+import { BlogpostListComponent } from './features/blog-post/blogpost-list/blogpost-list.component';
+import { EditCategoryComponent } from './features/category/edit-category/edit-category.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryListComponent } from './features/category/category-list/category-list.component';
 import { AddCategoryComponent } from './features/category/add-category/add-category.component';
+import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
 
 const routes: Routes = [
   {
-    path: 'admin/categories', component: CategoryListComponent   
+    path: 'admin/categories',
+    component: CategoryListComponent,
   },
   {
-     path: 'admin/categories/add', component: AddCategoryComponent
-  }
+    path: 'admin/categories/:id',
+    component: EditCategoryComponent,
+  },
+  {
+    path: 'admin/categories/add',
+    component: AddCategoryComponent,
+  },
+  {
+    path: 'admin/blogpost',
+    component: BlogpostListComponent,
+  },
+  {
+    path: 'admin/blogpost/add',
+    component: AddBlogpostComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { 
-
-}
+export class AppRoutingModule {}
