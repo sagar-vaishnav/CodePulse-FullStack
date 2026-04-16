@@ -13,6 +13,7 @@
           <th>Short Description</th>
           <th>Is Visible</th>
           <th>Catgories</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +27,9 @@
                 category.name
               }}</span>
             </span>
+          </td>
+          <td>
+            <a [routerLink]="['/admin/blogpost/edit', blogPost.id]" class="btn btn-sm btn-outline-primary">Edit</a>            
           </td>
         </tr>
       </tbody>
