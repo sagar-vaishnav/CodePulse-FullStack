@@ -14,7 +14,7 @@ export class BlogPostService {
   createBlogPost(data: AddBlogpost): Observable<BlogPost> {
     return this.http.post<BlogPost>(
       `${environment.apiBaseUrl}/api/blogposts`,
-      data
+      data,
     );
   }
   getAllBlogPosts(): Observable<BlogPost[]> {
@@ -23,20 +23,26 @@ export class BlogPostService {
 
   getBlogPostById(id: string): Observable<BlogPost> {
     return this.http.get<BlogPost>(
-      `${environment.apiBaseUrl}/api/blogposts/${id}`
+      `${environment.apiBaseUrl}/api/blogposts/${id}`,
+    );
+  }
+
+  getBlogPostByUrlHandle(urlHandle: string): Observable<BlogPost> {
+    return this.http.get<BlogPost>(
+      `${environment.apiBaseUrl}/api/blogposts/${urlHandle}`,
     );
   }
 
   updateBlogPost(id: string, data: AddBlogpost): Observable<BlogPost> {
     return this.http.put<BlogPost>(
       `${environment.apiBaseUrl}/api/blogposts/${id}`,
-      data
+      data,
     );
   }
 
   deleteBlogPost(id: string): Observable<void> {
     return this.http.delete<void>(
-      `${environment.apiBaseUrl}/api/blogposts/${id}`
+      `${environment.apiBaseUrl}/api/blogposts/${id}`,
     );
-  } 
+  }
 }

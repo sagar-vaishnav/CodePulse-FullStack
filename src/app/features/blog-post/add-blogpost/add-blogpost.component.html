@@ -53,8 +53,15 @@
       </div>
       <div class="mt-3">
         <label for="featuredImageUrl" class="form-label"
-          >Featured Image Url</label
-        >
+          >Featured Image Url
+          <button
+            type="button"
+            class="btn btn-light"
+            (click)="openImageSelector()"
+          >
+            Select Image
+          </button>
+        </label>
 
         <ng-container *ngIf="model.featuredImageUrl !== ''">
           <div>
@@ -83,7 +90,7 @@
           name="publishedDate"
           class="form-control"
           value="{{ model.publishedDate }}"
-          [ngModel]="model.publishedDate | date : 'yyy-MM-dd'"
+          [ngModel]="model.publishedDate | date: 'yyy-MM-dd'"
           (ngModelChange)="model.publishedDate = $event"
         />
       </div>
@@ -128,4 +135,23 @@
       </div>
     </div>
   </form>
+</div>
+
+<div
+  class="images-container-modal"
+  [ngClass]="{
+    'd-block': isImageSelectorVisible,
+    'd-none': !isImageSelectorVisible,
+  }"
+>
+  <button
+    type="button"
+    class="btn btn-light"
+    style="position: fixed; top: 10px; right: 10px"
+    aria-label="Close"
+    (click)="isImageSelectorVisible = false"
+  >
+    X
+  </button>
+  <app-image-selector></app-image-selector>
 </div>

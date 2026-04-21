@@ -1,0 +1,64 @@
+<ng-container *ngIf="blogPost$ | async as blogPost; else loader">
+  <div class="blog-details-wrapper">
+    <!-- Hero Section with Featured Image -->
+    <div class="blog-hero-section">
+      <img
+        [src]="blogPost.featuredImageUrl"
+        [alt]="blogPost.title"
+        class="blog-featured-image"
+      />
+      <div class="blog-hero-overlay"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="blog-content-wrapper">
+      <div class="container">
+        <!-- Article Header -->
+        <div class="article-header">
+          <h1 class="article-title">{{ blogPost.title }}</h1>
+          <p class="article-excerpt">{{ blogPost.shortDescription }}</p>
+
+          <!-- Article Metadata -->
+          <div class="article-meta">
+            <span class="meta-item">
+              <i class="bi bi-calendar-event me-2"></i>
+              <small>Recently published</small>
+            </span>
+            <span class="meta-item">
+              <i class="bi bi-clock me-2"></i>
+              <small>5 min read</small>
+            </span>
+          </div>
+        </div>
+
+        <!-- Article Body -->
+        <div class="article-body">
+          <div
+            *ngIf="blogPost.content"
+            [innerHTML]="blogPost.content"
+            class="blog-content"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button
+      class="btn-scroll-top"
+      [class.show]="showScrollTop"
+      (click)="scrollToTop()"
+      title="Back to Top"
+    >
+      <i class="bi bi-arrow-up"></i>
+    </button>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <div class="loader-container">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-3">Loading blog post...</p>
+  </div>
+</ng-template>
