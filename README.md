@@ -1,27 +1,129 @@
-# Codepulse
+# 🚀 Full Stack Blog Platform (Angular + .NET Core)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+A modern, scalable full-stack web application built using Angular (latest) and ASP.NET Core Web API. This project demonstrates enterprise-level architecture, clean code practices, and production-ready design patterns.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🌟 Key Features
 
-## Code scaffolding
+* ✨ Modern UI with Angular (Standalone Components)
+* 🔐 Authentication & Authorization (JWT-based)
+* 🧩 Modular Architecture (Feature-based structure)
+* 📡 RESTful APIs with ASP.NET Core
+* 🗄️ Database integration using Entity Framework Core
+* 📱 Fully Responsive Design
+* ⚡ Lazy Loading & Performance Optimization
+* 🧪 Scalable and maintainable code structure
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🏗️ Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Frontend
 
-## Running unit tests
+* Angular 17+ (Standalone APIs)
+* TypeScript
+* RxJS
+* SCSS / Tailwind (if used)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Backend
 
-## Running end-to-end tests
+* ASP.NET Core Web API
+* Entity Framework Core
+* SQL Server
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### DevOps / Tools
 
-## Further help
+* Git & GitHub
+* Postman
+* VS Code / Visual Studio
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
+
+## 📸 Screenshots
+
+(Add your screenshots here)
+
+---
+
+## 📂 Project Structure
+
+### Frontend (Angular)
+
+```
+src/
+ ├── app/
+ │   ├── core/
+ │   ├── shared/
+ │   ├── features/
+ │   └── layout/
+```
+
+### Backend (.NET)
+
+```
+API/
+ ├── Controllers/
+ ├── Services/
+ ├── Repositories/
+ ├── Models/
+ └── DTOs/
+```
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+* Node.js
+* Angular CLI
+* .NET SDK
+* SQL Server
+
+### Run Frontend
+
+```bash
+cd client
+npm install
+ng serve
+```
+
+### Run Backend
+
+```bash
+cd API
+dotnet run
+```
+
+---
+
+## 🎯 What This Project Demonstrates
+
+* Real-world full-stack architecture
+* Clean separation of concerns
+* API-driven design
+* Reusable UI components
+* Scalable folder structure
+
+---
+
+## 📈 Future Improvements
+
+* Role-based access control
+* Docker deployment
+* CI/CD pipeline (GitHub Actions)
+* Azure deployment
+
+---
+
+## 👨‍💻 Author
+
+**Sagar Vaishnav**
+Frontend Lead → Full Stack Developer (Angular + .NET)
+
+---
+
+## ⭐ Show your support
+
+If you like this project, give it a ⭐ on GitHub!
