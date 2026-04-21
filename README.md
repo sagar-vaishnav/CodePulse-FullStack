@@ -41,8 +41,14 @@ A modern, scalable full-stack web application built using Angular (latest) and A
 ---
 
 ## 📸 Screenshots
-
-(Add your screenshots here)
+Home Page
+<img width="1900" height="905" alt="Home" src="https://github.com/user-attachments/assets/1be42d91-a84c-47a8-84f3-fdcf928fa764" />
+Blog list Page
+<img width="1907" height="910" alt="Blog-list" src="https://github.com/user-attachments/assets/5747f1c5-eb13-4044-8dbf-8131858e87d3" />
+Blog Details Page
+<img width="1903" height="905" alt="Blog-details" src="https://github.com/user-attachments/assets/a84cb97c-54ac-49f1-923d-55cdc788f112" />
+Mobile Responsive
+<img width="376" height="812" alt="responsive-1" src="https://github.com/user-attachments/assets/838bb5b7-7b17-48c0-9a3e-f804644c4122" />
 
 ---
 
