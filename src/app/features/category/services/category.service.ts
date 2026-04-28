@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AddCategoryRequest } from '../models/add-category-request-model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Category } from '../models/category.model';
 import { environment } from 'src/environments/environment';
 import { UpdateCategoryRequest } from '../models/update-category-request-model';
@@ -16,9 +16,32 @@ export class CategoryService {
     private cookieService: CookieService,
   ) {}
 
-  getAllCategories(): Observable<Category[]> {
+  getAllCategories(
+    query?: string,
+    sortBy?: string,
+    sortDirection?: string,
+    pageNumber?: number,
+    pageSize?: number,
+  ): Observable<Category[]> {
+    let params = new HttpParams();
+    if (query) {
+      params = params.set('query', query);
+    }
+    if (sortBy) {
+      params = params.set('sortBy', sortBy);
+    }
+    if (sortDirection) {
+      params = params.set('sortDirection', sortDirection);
+    }
+    if (pageNumber) {
+      params = params.set('pageNumber', pageNumber);
+    }
+    if (pageSize) {
+      params = params.set('pageSize', pageSize);
+    }
     return this.http.get<Category[]>(
       `${environment.apiBaseUrl}/api/categories`,
+      { params: params },
     );
   }
 
@@ -48,6 +71,12 @@ export class CategoryService {
   deleteCategory(id: string): Observable<Category> {
     return this.http.delete<Category>(
       `${environment.apiBaseUrl}/api/categories/${id}?AddAuth=true`,
+    );
+  }
+
+  getCategoryCount(): Observable<number> {
+    return this.http.get<number>(
+      `${environment.apiBaseUrl}/api/categories/count`,
     );
   }
 }

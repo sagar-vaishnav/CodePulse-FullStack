@@ -1,6 +1,16 @@
 <div class="container">
   <h1 class="mt-3">Category List</h1>
-  <div class="d-flex justify-content-end mt-3">
+  <div class="d-flex justify-content-between mt-3">
+    <div class="d-flex">
+      <input type="text" class="form-control" #queryText />
+      <button
+        type="button"
+        class="btn btn-warning ms-3"
+        (click)="onSearch(queryText.value)"
+      >
+        Search
+      </button>
+    </div>
     <a [routerLink]="['/admin/categories/add']" class="btn btn-primary"
       >Add Category
     </a>
@@ -9,10 +19,54 @@
     <table class="table table-bordered mt-3">
       <thead>
         <tr class="fw-bold">
-          <td>Id</td>
-          <td>Name</td>
-          <td>Url Handle</td>
-          <td>Action</td>
+          <th>Id</th>
+          <th>
+            Name
+            <span>
+              <span>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('name', 'asc')"
+                >
+                  <i class="bi bi-arrow-up"></i>
+                </button>
+              </span>
+              <span>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('name', 'desc')"
+                >
+                  <i class="bi bi-arrow-down"></i>
+                </button>
+              </span>
+            </span>
+          </th>
+          <th>
+            Url Handle
+            <span>
+              <span>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('url', 'asc')"
+                >
+                  <i class="bi bi-arrow-up"></i>
+                </button>
+              </span>
+              <span>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="sort('url', 'desc')"
+                >
+                  <i class="bi bi-arrow-down"></i>
+                </button>
+              </span>
+            </span>
+          </th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -36,5 +90,19 @@
         </tr>
       </tbody>
     </table>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" (click)="getPreviousPage()">Previous</a>
+        </li>
+
+        <li *ngFor="let item of list; let index = index" class="page-item">
+          <a class="page-link" (click)="getPage(index + 1)">{{ index + 1 }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" (click)="getNextPage()">Next</a>
+        </li>
+      </ul>
+    </nav>
   </ng-container>
 </div>
