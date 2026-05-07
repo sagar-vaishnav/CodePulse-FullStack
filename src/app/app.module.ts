@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -21,34 +21,28 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './core/Interceptors/auth.interceptor';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    CategoryListComponent,
-    AddCategoryComponent,
-    EditCategoryComponent,
-    BlogpostListComponent,
-    AddBlogpostComponent,
-    EditBlogpostComponent,
-    ImageSelectorComponent,
-    HomeComponent,
-    BlogDetailsComponent,
-    LoginComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MarkdownModule.forRoot(),
-  ],
-  providers: [
-    CookieService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavbarComponent,
+        CategoryListComponent,
+        AddCategoryComponent,
+        EditCategoryComponent,
+        BlogpostListComponent,
+        AddBlogpostComponent,
+        EditBlogpostComponent,
+        ImageSelectorComponent,
+        HomeComponent,
+        BlogDetailsComponent,
+        LoginComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MarkdownModule.forRoot()], providers: [
+        CookieService,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
