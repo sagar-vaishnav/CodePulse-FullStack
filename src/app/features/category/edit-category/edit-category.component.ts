@@ -6,9 +6,10 @@ import { Category } from '../models/category.model';
 import { UpdateCategoryRequest } from '../models/update-category-request-model';
 
 @Component({
-  selector: 'app-edit-category',
-  templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.css'],
+    selector: 'app-edit-category',
+    templateUrl: './edit-category.component.html',
+    styleUrls: ['./edit-category.component.css'],
+    standalone: false
 })
 export class EditCategoryComponent implements OnInit, OnDestroy {
   id: string | null = null;

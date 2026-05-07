@@ -5,9 +5,10 @@ import { Observable } from 'rxjs';
 import { BlogPost } from '../../blog-post/models/blog-post.model';
 
 @Component({
-  selector: 'app-blog-details',
-  templateUrl: './blog-details.component.html',
-  styleUrls: ['./blog-details.component.css'],
+    selector: 'app-blog-details',
+    templateUrl: './blog-details.component.html',
+    styleUrls: ['./blog-details.component.css'],
+    standalone: false
 })
 export class BlogDetailsComponent implements OnInit {
   url: string | null = null;

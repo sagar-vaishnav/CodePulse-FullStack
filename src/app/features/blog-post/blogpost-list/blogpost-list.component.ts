@@ -4,9 +4,10 @@ import { BlogPost } from '../models/blog-post.model';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-blogpost-list',
-  templateUrl: './blogpost-list.component.html',
-  styleUrls: ['./blogpost-list.component.css'],
+    selector: 'app-blogpost-list',
+    templateUrl: './blogpost-list.component.html',
+    styleUrls: ['./blogpost-list.component.css'],
+    standalone: false
 })
 export class BlogpostListComponent implements OnInit {
   blogPosts$?: Observable<BlogPost[]>;

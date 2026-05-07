@@ -8,9 +8,10 @@ import { CategoryService } from '../../category/services/category.service';
 import { ImageService } from 'src/app/shared/components/image-selector/image.service';
 
 @Component({
-  selector: 'app-edit-blogpost',
-  templateUrl: './edit-blogpost.component.html',
-  styleUrls: ['./edit-blogpost.component.css'],
+    selector: 'app-edit-blogpost',
+    templateUrl: './edit-blogpost.component.html',
+    styleUrls: ['./edit-blogpost.component.css'],
+    standalone: false
 })
 export class EditBlogpostComponent implements OnInit, OnDestroy {
   id: string | null = null;

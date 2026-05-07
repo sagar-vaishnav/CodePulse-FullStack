@@ -8,9 +8,10 @@ import { Category } from '../../category/models/category.model';
 import { ImageService } from 'src/app/shared/components/image-selector/image.service';
 
 @Component({
-  selector: 'app-add-blogpost',
-  templateUrl: './add-blogpost.component.html',
-  styleUrls: ['./add-blogpost.component.css'],
+    selector: 'app-add-blogpost',
+    templateUrl: './add-blogpost.component.html',
+    styleUrls: ['./add-blogpost.component.css'],
+    standalone: false
 })
 export class AddBlogpostComponent implements OnInit, OnDestroy {
   model: AddBlogpost;

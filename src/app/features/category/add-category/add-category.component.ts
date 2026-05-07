@@ -5,9 +5,10 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css'],
+    selector: 'app-add-category',
+    templateUrl: './add-category.component.html',
+    styleUrls: ['./add-category.component.css'],
+    standalone: false
 })
 export class AddCategoryComponent implements OnDestroy {
   model: AddCategoryRequest;
