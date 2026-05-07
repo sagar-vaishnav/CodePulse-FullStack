@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ImageService } from './image.service';
 import { BlogImage } from '../../models/blog-image.model';
 import { Observable } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-image-selector',
-    templateUrl: './image-selector.component.html',
-    styleUrls: ['./image-selector.component.css'],
-    standalone: false
+  selector: 'app-image-selector',
+  templateUrl: './image-selector.component.html',
+  styleUrls: ['./image-selector.component.css'],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class ImageSelectorComponent implements OnInit {
   private file?: File;

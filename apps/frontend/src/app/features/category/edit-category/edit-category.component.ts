@@ -4,12 +4,14 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category.model';
 import { UpdateCategoryRequest } from '../models/update-category-request-model';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-edit-category',
-    templateUrl: './edit-category.component.html',
-    styleUrls: ['./edit-category.component.css'],
-    standalone: false
+  selector: 'app-edit-category',
+  templateUrl: './edit-category.component.html',
+  styleUrls: ['./edit-category.component.css'],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class EditCategoryComponent implements OnInit, OnDestroy {
   id: string | null = null;
@@ -19,7 +21,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

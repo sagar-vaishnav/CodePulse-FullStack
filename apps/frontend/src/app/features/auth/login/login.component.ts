@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from './models/login-request.model';
 import { AuthService } from '../services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    standalone: false
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  imports: [CommonModule, FormsModule],
 })
 export class LoginComponent {
   model: LoginRequest;

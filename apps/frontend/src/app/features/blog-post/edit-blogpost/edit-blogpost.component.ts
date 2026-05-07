@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BlogPostService } from '../services/blog-post.service';
 import { Observable, Subscription } from 'rxjs';
@@ -6,12 +11,17 @@ import { BlogPost } from '../models/blog-post.model';
 import { Category } from '../../category/models/category.model';
 import { CategoryService } from '../../category/services/category.service';
 import { ImageService } from 'src/app/shared/components/image-selector/image.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ImageSelectorComponent } from 'src/app/shared/components/image-selector/image-selector.component';
+import { MarkdownComponent } from 'ngx-markdown';
 
 @Component({
-    selector: 'app-edit-blogpost',
-    templateUrl: './edit-blogpost.component.html',
-    styleUrls: ['./edit-blogpost.component.css'],
-    standalone: false
+  selector: 'app-edit-blogpost',
+  templateUrl: './edit-blogpost.component.html',
+  styleUrls: ['./edit-blogpost.component.css'],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MarkdownComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EditBlogpostComponent implements OnInit, OnDestroy {
   id: string | null = null;

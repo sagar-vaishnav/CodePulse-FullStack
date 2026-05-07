@@ -2,12 +2,15 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category.model';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'app-category-list',
-    templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.css'],
-    standalone: false
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css'],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
 })
 export class CategoryListComponent implements OnInit {
   //categories?: Category[];

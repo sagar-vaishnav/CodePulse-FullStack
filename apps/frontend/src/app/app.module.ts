@@ -1,48 +1,31 @@
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './core/components/navbar/navbar.component';
-import { CategoryListComponent } from './features/category/category-list/category-list.component';
-import { AddCategoryComponent } from './features/category/add-category/add-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditCategoryComponent } from './features/category/edit-category/edit-category.component';
-import { BlogpostListComponent } from './features/blog-post/blogpost-list/blogpost-list.component';
-import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
 import { MarkdownModule } from 'ngx-markdown';
-import { EditBlogpostComponent } from './features/blog-post/edit-blogpost/edit-blogpost.component';
-import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
-import { HomeComponent } from './features/public/home/home.component';
 import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
-import { LoginComponent } from './features/auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './core/Interceptors/auth.interceptor';
 
-@NgModule({ declarations: [
-        AppComponent,
-        NavbarComponent,
-        CategoryListComponent,
-        AddCategoryComponent,
-        EditCategoryComponent,
-        BlogpostListComponent,
-        AddBlogpostComponent,
-        EditBlogpostComponent,
-        ImageSelectorComponent,
-        HomeComponent,
-        BlogDetailsComponent,
-        LoginComponent,
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        RouterModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MarkdownModule.forRoot()], providers: [
-        CookieService,
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [BlogDetailsComponent],
+  bootstrap: [],
+  imports: [
+    BrowserModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MarkdownModule.forRoot(),
+  ],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

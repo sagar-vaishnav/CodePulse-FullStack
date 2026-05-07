@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { User } from 'src/app/features/auth/models/user.model';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
-    selector: 'app-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css'],
-    standalone: false
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  imports: [RouterLink],
 })
 export class NavbarComponent implements OnInit {
-  user?: User;
+  user = signal<User | undefined>(undefined);
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -18,19 +18,20 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.user.set(undefined);
     this.router.navigateByUrl('/login');
   }
   ngOnInit(): void {
     this.authService.user().subscribe({
       next: (user) => {
         console.log('Current User:', user);
-        this.user = user;
+        this.user.set(user);
       },
       error: (error) => {
         console.error('Error fetching user:', error);
       },
     });
 
-    this.user = this.authService.getUser();
+    this.user.set(this.authService.getUser());
   }
 }

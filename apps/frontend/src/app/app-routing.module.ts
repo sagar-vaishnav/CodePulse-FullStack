@@ -1,63 +1,76 @@
-import { BlogpostListComponent } from './features/blog-post/blogpost-list/blogpost-list.component';
-import { EditCategoryComponent } from './features/category/edit-category/edit-category.component';
-import { NgModule, Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CategoryListComponent } from './features/category/category-list/category-list.component';
-import { AddCategoryComponent } from './features/category/add-category/add-category.component';
-import { AddBlogpostComponent } from './features/blog-post/add-blogpost/add-blogpost.component';
-import { EditBlogpostComponent } from './features/blog-post/edit-blogpost/edit-blogpost.component';
-import { HomeComponent } from './features/public/home/home.component';
-import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
-import { LoginComponent } from './features/auth/login/login.component';
+import { Routes } from '@angular/router';
 import { authGuard } from './features/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('./features/public/home/home.component').then(
+        (c) => c.HomeComponent,
+      ),
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () =>
+      import('./features/auth/login/login.component').then(
+        (c) => c.LoginComponent,
+      ),
   },
   {
     path: 'blog/:url',
-    component: BlogDetailsComponent,
+    loadComponent: () =>
+      import('./features/public/blog-details/blog-details.component').then(
+        (c) => c.BlogDetailsComponent,
+      ),
   },
   {
     path: 'admin/categories',
-    component: CategoryListComponent,
+    loadComponent: () =>
+      import('./features/category/category-list/category-list.component').then(
+        (c) => c.CategoryListComponent,
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'admin/categories/add',
-    component: AddCategoryComponent,
+    loadComponent: () =>
+      import('./features/category/add-category/add-category.component').then(
+        (c) => c.AddCategoryComponent,
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'admin/categories/:id',
-    component: EditCategoryComponent,
+    loadComponent: () =>
+      import('./features/category/edit-category/edit-category.component').then(
+        (c) => c.EditCategoryComponent,
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'admin/blogpost',
-    component: BlogpostListComponent,
+    loadComponent: () =>
+      import('./features/blog-post/blogpost-list/blogpost-list.component').then(
+        (c) => c.BlogpostListComponent,
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'admin/blogpost/add',
-    component: AddBlogpostComponent,
+    loadComponent: () =>
+      import('./features/blog-post/add-blogpost/add-blogpost.component').then(
+        (c) => c.AddBlogpostComponent,
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'admin/blogpost/edit/:id',
-    component: EditBlogpostComponent,
+    loadComponent: () =>
+      import('./features/blog-post/edit-blogpost/edit-blogpost.component').then(
+        (c) => c.EditBlogpostComponent,
+      ),
     canActivate: [authGuard],
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+export { routes };
