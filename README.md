@@ -27,7 +27,6 @@ The application allows users to:
 - RxJS
 - Angular Routing
 - Standalone Components
-- Lazy Loading 
 - Bootstrap / Angular Material
 - JWT Authentication
 
