@@ -6,21 +6,21 @@ This project was created as a portfolio-ready showcase application to demonstrat
 
 🚀 Tech Stack
 Frontend
-Angular
-TypeScript
-RxJS
-Angular Routing
-Standalone Components
-Bootstrap / Angular Material
-JWT Authentication
-Backend
-ASP.NET Core Web API
-Entity Framework Core
-SQL Server
-Repository Pattern
-Dependency Injection
-JWT Token Authentication
-Clean Architecture Principles
+#Angular
+#TypeScript
+#RxJS
+#Angular Routing
+#Standalone Components
+#Bootstrap / Angular Material
+#JWT Authentication
+#Backend
+#ASP.NET Core Web API
+#Entity Framework Core
+#SQL Server
+#Repository Pattern
+#Dependency Injection
+#JWT Token Authentication
+#Clean Architecture Principles
 ✨ Features
 User Registration & Login
 JWT-based Authentication & Authorization
