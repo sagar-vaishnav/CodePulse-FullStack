@@ -18,7 +18,7 @@ export class CategoryListComponent implements OnInit {
   categories$?: Observable<Category[]>;
   searchQuery: string = '';
   pageNumber: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 10;
   sortBy?: string;
   sortDirection?: string;
   constructor(private categoryService: CategoryService) {}
