@@ -1,20 +1,158 @@
-<div class="container">
-    <h1 class="mt-3">Add Category</h1>
-    <form #ngFrom (ngSubmit)="onFormSubmit()">
-        <div class="mt-2">
-            <div class="mt-3">
-                <label for="from-label">Category Name</label>
-                <input type="text" [(ngModel)]="model.name" id="categoryName" class="form-control" name="categoryName" />
-            </div>
-
-            <div class="mt-3">
-                <label for="from-label">Category Url Handle</label>
-                <input type="text" [(ngModel)]="model.urlHandle" id="categoryUrlHandle" class="form-control" name="categoryUrlHandle" />
-            </div>
-
-            <div class="mt-3">
-                <button type="submit" class="btn btn-primary">Add Category</button>
-            </div>
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-header text-white position-relative overflow-hidden">
+          <h1 class="card-title h4 mb-0 fw-bold">
+            <i class="bi bi-plus-circle me-2"></i>Add New Category
+          </h1>
+          <p class="mb-0 mt-1 opacity-75 small">
+            Create a new category for your blog posts
+          </p>
         </div>
-    </form>
+
+        <div class="card-body p-4">
+          <form
+            [formGroup]="categoryForm"
+            (ngSubmit)="onFormSubmit()"
+            novalidate
+          >
+            <!-- Category Name Field -->
+            <div class="mb-4">
+              <label
+                for="categoryName"
+                class="form-label fw-semibold text-dark"
+              >
+                <i class="bi bi-tag text-primary me-1"></i>Category Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="categoryName"
+                formControlName="name"
+                class="form-control form-control-lg border-0 shadow-sm"
+                style="border-radius: 0.75rem"
+                [class.is-invalid]="isFieldInvalid('name')"
+                placeholder="Enter category name"
+              />
+              @if (
+                isFieldInvalid("name") && categoryForm.get("name")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  Category name is required.
+                </div>
+              }
+              @if (
+                categoryForm.get("name")?.hasError("maxlength") &&
+                categoryForm.get("name")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  Category name must be at most 100 characters.
+                </div>
+              }
+            </div>
+
+            <!-- URL Handle Field -->
+            <div class="mb-4">
+              <label
+                for="categoryUrlHandle"
+                class="form-label fw-semibold text-dark"
+              >
+                <i class="bi bi-link-45deg text-primary me-1"></i>URL Handle
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                id="categoryUrlHandle"
+                formControlName="urlHandle"
+                class="form-control form-control-lg border-0 shadow-sm"
+                style="border-radius: 0.75rem"
+                [class.is-invalid]="isFieldInvalid('urlHandle')"
+                placeholder="Enter URL handle (e.g., my-category)"
+              />
+              @if (
+                isFieldInvalid("urlHandle") &&
+                categoryForm.get("urlHandle")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  URL handle is required.
+                </div>
+              }
+              @if (
+                categoryForm.get("urlHandle")?.hasError("minlength") &&
+                categoryForm.get("urlHandle")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  URL handle must be at least 3 characters.
+                </div>
+              }
+              @if (
+                categoryForm.get("urlHandle")?.hasError("maxlength") &&
+                categoryForm.get("urlHandle")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  URL handle must be at most 100 characters.
+                </div>
+              }
+              @if (
+                categoryForm.get("urlHandle")?.hasError("pattern") &&
+                categoryForm.get("urlHandle")?.touched
+              ) {
+                <div class="invalid-feedback d-flex align-items-center">
+                  <i class="bi bi-exclamation-triangle me-1"></i>
+                  URL handle can only contain letters, numbers, and hyphens.
+                </div>
+              }
+            </div>
+
+            <!-- Form Actions -->
+            <div
+              class="d-grid gap-2 d-md-flex justify-content-md-end pt-3 border-top"
+            >
+              <button
+                type="button"
+                class="btn btn-outline-secondary me-md-2 px-4 py-2"
+                style="border-radius: 0.75rem"
+                (click)="resetForm()"
+              >
+                <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
+              </button>
+              <button
+                type="submit"
+                class="btn btn-lg px-4 py-2 text-white fw-semibold"
+                style="
+                  border-radius: 0.75rem;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  border: none;
+                "
+                [disabled]="categoryForm.invalid"
+              >
+                <i class="bi bi-check-circle me-1"></i>Add Category
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Card Footer with Help Text -->
+        <div class="card-footer bg-light border-0">
+          <div class="d-flex align-items-center text-muted small">
+            <i class="bi bi-info-circle me-2"></i>
+            <div>
+              <strong
+                >Fields marked with <span class="text-danger">*</span> are
+                required.</strong
+              >
+              <br />The URL handle will be used in the category's web address
+              and should contain only letters, numbers, and hyphens.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
