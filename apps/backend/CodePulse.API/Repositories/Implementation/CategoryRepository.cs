@@ -90,9 +90,16 @@ public class CategoryRepository : ICategoryRepository
         return await dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<int> GetCount()
+    public async Task<int> GetCount(string? searchText)
     {
-        return await dbContext.Categories.CountAsync();
+        var categories = dbContext.Categories.AsQueryable();
+
+        if (string.IsNullOrWhiteSpace(searchText) == false)
+        {
+            categories = categories.Where(x => x.Name.Contains(searchText));
+        }
+
+        return await categories.CountAsync();
     }
 
     public async Task<Category?> UpdateAsync(Category category)

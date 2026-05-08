@@ -13,77 +13,102 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
 })
 export class CategoryListComponent implements OnInit {
-  //categories?: Category[];
+  visiblePages: number[] = [];
+  totalPages = 0;
   categories$?: Observable<Category[]>;
-  totalCount?: number;
-  list: number[] = [];
+  searchQuery: string = '';
   pageNumber: number = 1;
   pageSize: number = 5;
+  sortBy?: string;
+  sortDirection?: string;
   constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.categoryService.getCategoryCount().subscribe({
+    this.categoryService.getCategoryCount(this.searchQuery).subscribe({
       next: (value) => {
-        this.totalCount = value;
-        this.list = new Array(Math.ceil(value / this.pageSize));
-        this.categories$ = this.categoryService.getAllCategories(
-          undefined,
-          undefined,
-          undefined,
-          this.pageNumber,
-          this.pageSize,
-        );
+        this.totalPages = Math.ceil(value / this.pageSize);
+        this.updateVisiblePages();
+        this.getCategoryList();
       },
     });
-    this.categories$ = this.categoryService.getAllCategories();
+    this.getCategoryList();
   }
   onSearch(query: string): void {
-    this.categories$ = this.categoryService.getAllCategories(query);
+    this.searchQuery = query.trim();
+    this.pageNumber = 1;
+    this.getCategoryList();
+
+    this.categoryService.getCategoryCount(this.searchQuery).subscribe({
+      next: (count) => {
+        this.totalPages = Math.ceil(count / this.pageSize);
+        this.updateVisiblePages();
+      },
+      error: (error) => {
+        console.error('Error fetching category count:', error);
+      },
+    });
   }
-  sort(sortBy: string, sortDirection: string): void {
+
+  getCategoryList(): void {
     this.categories$ = this.categoryService.getAllCategories(
-      undefined,
-      sortBy,
-      sortDirection,
+      this.searchQuery,
+      this.sortBy,
+      this.sortDirection,
+      this.pageNumber,
+      this.pageSize,
     );
+  }
+
+  updateVisiblePages(): void {
+    const pagesToShow = 5;
+
+    let startPage = Math.max(this.pageNumber - Math.floor(pagesToShow / 2), 1);
+
+    let endPage = startPage + pagesToShow - 1;
+
+    if (endPage > this.totalPages) {
+      endPage = this.totalPages;
+      startPage = Math.max(endPage - pagesToShow + 1, 1);
+    }
+
+    this.visiblePages = [];
+
+    for (let i = startPage; i <= endPage; i++) {
+      this.visiblePages.push(i);
+    }
+  }
+
+  sort(sortBy: string, sortDirection: string): void {
+    this.sortBy = sortBy;
+    this.sortDirection = sortDirection;
+    this.getCategoryList();
+    this.categoryService.getCategoryCount(this.searchQuery).subscribe({
+      next: (count) => {
+        this.totalPages = Math.ceil(count / this.pageSize);
+        this.updateVisiblePages();
+      },
+      error: (error) => {
+        console.error('Error fetching category count:', error);
+      },
+    });
   }
   getPage(pageNumber: number) {
     this.pageNumber = pageNumber;
-    this.categories$ = this.categoryService.getAllCategories(
-      undefined,
-      undefined,
-      undefined,
-      pageNumber,
-      this.pageSize,
-    );
+    this.updateVisiblePages();
+    this.getCategoryList();
   }
 
-  getPreviousPage() {
-    if (this.pageNumber - 1 < 1) {
-      return;
-    }
-    this.pageNumber -= 1;
-    this.categories$ = this.categoryService.getAllCategories(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize,
-    );
+  getPreviousPage(): void {
+    if (this.pageNumber === 1) return;
+    this.pageNumber--;
+    this.updateVisiblePages();
+    this.getCategoryList();
   }
 
-  getNextPage() {
-    if (this.pageNumber + 1 > this.list.length) {
-      return;
-    }
-
-    this.pageNumber += 1;
-    this.categories$ = this.categoryService.getAllCategories(
-      undefined,
-      undefined,
-      undefined,
-      this.pageNumber,
-      this.pageSize,
-    );
+  getNextPage(): void {
+    if (this.pageNumber === this.totalPages) return;
+    this.pageNumber++;
+    this.updateVisiblePages();
+    this.getCategoryList();
   }
 }

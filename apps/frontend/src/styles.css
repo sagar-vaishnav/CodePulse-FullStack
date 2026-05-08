@@ -9,3 +9,9 @@
   padding: 50px;
   background-color: rgb(0, 0, 0, 0.5);
 }
+
+.btn-common {
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}

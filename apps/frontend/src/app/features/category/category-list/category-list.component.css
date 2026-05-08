@@ -1,0 +1,51 @@
+.category-row {
+  transition: all 0.2s ease;
+}
+
+.category-row:hover {
+  background-color: #f8f9ff;
+  transform: scale(1.001);
+}
+
+.page-link {
+  border-radius: 0.5rem !important;
+  margin: 0 0.2rem;
+}
+
+.table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.card {
+  border: none;
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.pagination {
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.page-link {
+  border-radius: 0.6rem !important;
+  min-width: 42px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.page-item.active .page-link {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}
+
+.page-link:hover {
+  transform: translateY(-1px);
+}

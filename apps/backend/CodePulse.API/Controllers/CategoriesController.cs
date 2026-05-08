@@ -156,9 +156,9 @@ namespace CodePulse.API.Controllers
         // GET: https://localhost:7226/api/categories/count
         [HttpGet]
         [Route("count")]        
-        public async Task<IActionResult> GetCategoriesTotal()
+        public async Task<IActionResult> GetCategoriesTotal([FromQuery] string? searchText)
         {
-            var count = await categoryRepository.GetCount();
+            var count = await categoryRepository.GetCount(searchText);
 
             return Ok(count);
         }

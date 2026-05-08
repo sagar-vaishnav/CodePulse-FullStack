@@ -19,6 +19,6 @@ namespace CodePulse.API.Repositories.Interface
 
         Task<Category?> DeleteAsync(Guid id);
 
-        Task<int> GetCount();
+        Task<int> GetCount(string? searchText = null);
     }
 }

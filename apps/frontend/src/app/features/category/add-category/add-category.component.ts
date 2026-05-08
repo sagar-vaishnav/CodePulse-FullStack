@@ -23,7 +23,14 @@ import {
 export class AddCategoryComponent implements OnInit, OnDestroy {
   categoryForm = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
-    urlHandle: ['', [Validators.required, Validators.maxLength(100)]],
+    urlHandle: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.pattern(/^[a-z0-9-]+$/),
+      ],
+    ],
   });
 
   private addCategorySubscription?: Subscription;
